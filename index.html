@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Chunk Land Dispatch: Gardener Jeff’s scoop, Chunk’s vibe, wild updates, Chunk's Children's Book—join the fam now!">
+    <meta name="robots" content="index, follow">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Chunk Land Dispatch</title>
+    <style>
+        :root {
+            --primary-orange: #ff8c00;
+            --light-orange: rgba(255, 140, 0, 0.2);
+            --medium-orange: rgba(255, 140, 0, 0.5);
+            --brown: #5c4033;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 4vw;
+            background: var(--white);
+            color: var(--brown);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            font-size: clamp(16px, 4vw, 18px);
+        }
+
+        /* Orange Sun Watermark */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vw;
+            max-width: 1000px;
+            max-height: 1000px;
+            background: radial-gradient(circle, var(--medium-orange), transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        /* Season 7 - Issue 1 Watermark */
+        body::after {
+            content: 'Season 7 - Issue 1';
+            position: fixed;
+            bottom: 5%;
+            right: 5%;
+            font-size: clamp(1.5em, 4vw, 2.5em);
+            color: var(--medium-orange);
+            text-transform: uppercase;
+            font-weight: 700;
+            transform: rotate(-10deg);
+            text-shadow: 0 1px 5px var(--shadow);
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        h1, h2 {
+            color: var(--primary-orange);
+            margin: 0.5rem 0;
+            font-size: clamp(1.5em, 5vw, 2em);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            text-shadow: 0 1px 3px var(--shadow);
+        }
+
+        h1 {
+            font-size: clamp(2em, 6vw, 3em); /* Bigger Chunk Land Dispatch Debut */
+        }
+
+        a {
+            color: var(--brown);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem 0.8rem 3rem;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.2s, color 0.3s;
+            position: relative;
+            background: var(--light-orange);
+            display: inline-block;
+            min-height: 44px;
+            line-height: 1;
+            touch-action: manipulation;
+        }
+
+        a:hover, a:focus {
+            color: var(--white);
+            background: var(--primary-orange);
+            transform: scale(1.05);
+            outline: none;
+        }
+
+        a::before {
+            content: '🌰';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+            transition: content 0.3s;
+        }
+
+        a:hover::before, a:focus::before {
+            content: '🌱';
+        }
+
+        .ai-juice, .ai-video, .ai-katie, .ai-tickled, .ai-youtube, .ai-screen, .ai-book, .ai-new {
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            background: var(--medium-orange);
+        }
+
+        /* YouTube Links Pop More */
+        .ai-youtube {
+            background: var(--primary-orange);
+            color: var(--white);
+            font-weight: bold;
+            border: 2px solid var(--brown);
+        }
+
+        .ai-youtube:hover, .ai-youtube:focus {
+            background: var(--medium-orange);
+            transform: scale(1.1);
+        }
+
+        /* Award Jeff Link Pops More */
+        .award-jeff {
+            background: var(--primary-orange);
+            color: var(--white);
+            font-weight: bold;
+            border: 2px dashed var(--brown);
+            padding: 1rem 2rem 1rem 3.5rem;
+            font-size: 1.1em;
+        }
+
+        .award-jeff:hover, .award-jeff:focus {
+            background: var(--medium-orange);
+            transform: scale(1.1);
+        }
+
+        .section {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary-orange);
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed var(--primary-orange);
+        }
+
+        .screen-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 2px dashed var(--primary-orange);
+            justify-content: center;
+        }
+
+        .updates {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .update-item {
+            font-size: clamp(0.9em, 3vw, 1em);
+            font-style: italic;
+            color: var(--brown);
+            text-align: center;
+        }
+
+        .update-item.garden {
+            font-weight: bold;
+            color: var(--primary-orange);
+            text-shadow: 0 1px 2px var(--shadow);
+        }
+
+        .emoji {
+            display: inline-block;
+            vertical-align: middle;
+            width: 1.5em;
+            text-align: center;
+        }
+
+        em { font-style: italic; color: #000; }
+        .tickled-big { font-size: clamp(1.8em, 6vw, 2.2em); font-weight: 700; }
+
+        .weather-report {
+            margin: 1rem 0 0;
+            padding: 1rem;
+            background: var(--light-orange);
+            border: 2px dashed var(--primary-orange);
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--brown);
+        }
+
+        /* Mission Statement Styling */
+        .mission-statement {
+            text-align: center;
+            font-style: italic;
+            font-size: clamp(1.2em, 4vw, 1.5em);
+            color: var(--primary-orange);
+            margin: 1rem 0;
+            text-shadow: 0 1px 2px var(--shadow);
+        }
+
+        /* Self-Publishing Flair */
+        .self-publishing {
+            font-size: 1.2em;
+            color: var(--primary-orange);
+            font-weight: bold;
+            text-shadow: 0 1px 3px var(--shadow);
+            padding: 0.5rem;
+            background: var(--light-orange);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Highlight Mailing List CTA */
+        .mailing-cta {
+            background: var(--primary-orange);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .mailing-cta:hover, .mailing-cta:focus {
+            background: var(--medium-orange);
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 3vw; }
+            .section { padding: 2rem; }
+            .links { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+            .screen-links { flex-direction: row; }
+            .updates { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+            .update-item { flex: 1; min-width: 0; }
+            .update-item.garden { flex: 2; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 3vw; }
+            .section { padding: 1rem; margin: 0.75rem 0; }
+            a { padding: 0.6rem 1rem 0.6rem 2.5rem; font-size: 0.9em; }
+            a::before { left: 0.8rem; font-size: 1em; }
+            h1, h2 { font-size: clamp(1.2em, 4vw, 1.5em); }
+            .weather-report { padding: 0.75rem; }
+            .award-jeff { padding: 0.8rem 1.5rem 0.8rem 3rem; font-size: 1em; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+            body::after { opacity: 0.4; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Title Section -->
+    <div class="section title-section">
+        <h1>CHUNK LAND DISPATCH DEBUT</h1>
+        <div class="mission-statement">"Coexisting with Wildlife, One Chunk at a Time!"</div>
+    </div>
+
+    <!-- Intro and Weather Section -->
+    <div class="section snooze-news">
+        <h2>YO CHUNK FAM!</h2>
+        <div style="text-align: center;"><span class="emoji" aria-hidden="true">🦫</span> Chunk ain't No Punk... He'll Be Out On His Time! <span class="emoji" aria-hidden="true">💚</span></div>
+        <div class="weather-report"><span class="emoji" aria-hidden="true">🌤</span> CHUNK LAND WEATHER: 50°F partly cloudy (Middletown DE March 08). Spring vibes! <a href="https://weather.com/weather/today/l/52fc1ab34673ede3218e887e07e91bf60af694988dc559c5bca7a8704c177bef" target="_blank" rel="noopener noreferrer" class="live-weather" aria-label="View live weather for Middletown, DE">Live Weather</a></div>
+        <div style="margin-top: 1rem;">New to Chunk? <a href="https://youtu.be/3nS6OqHT7aU" target="_blank" rel="noopener noreferrer" class="ai-new">Watch Chunk’s Intro Video!</a></div>
+    </div>
+
+    <!-- Gardener Jeff Scoop Section -->
+    <div class="section jeff-scoop">
+        <h2>GARDENER JEFF SPILLS THE DIRT</h2>
+        Gardener Jeff drops bombs: <em class="tickled-big">Tickled</em> sparked a rebirth of the Chunk vibe! Raw scoop, click now! <a href="https://chunknews.github.io/chunk-newsletter/Tickled_Review.html" target="_blank" rel="noopener noreferrer" class="ai-juice">Read Jeff’s Tickled Review</a> <a href="https://www.amazon.com/Tickled-Commonsense-Guide-Present-Moment/dp/0063036894" target="_blank" rel="noopener noreferrer" class="ai-juice">Buy Tickled Book</a> <span class="emoji" aria-hidden="true">🦫</span>
+    </div>
+
+    <!-- Screen Drop Section -->
+    <div class="section screen-scene">
+        <h2>CHUNK’S SCREEN DROP</h2>
+        <div class="updates">
+            <div class="update-item stars"><span class="emoji" aria-hidden="true">📺</span> Chunk Stars in <em>My Best Friend’s an Animal</em> S2 Greenlit!</div>
+        </div>
+        <div class="screen-links">
+            <a href="https://www.hulu.com/series/my-best-friends-an-animal-39c1f36b-c07d-44c5-aa38-ecf8cf6659d2?dl=false" target="_blank" rel="noopener noreferrer" class="ai-screen">Hulu</a>
+            <a href="https://www.nationalgeographic.com/tv/show/39f1c36c-f84d-475a-b1f6-e611df851f7a" target="_blank" rel="noopener noreferrer" class="ai-screen">Nat Geo</a>
+            <a href="https://www.disneyplus.com/series/my-best-friends-an-animal/5ahCmMFxy2jm?v=var1" target="_blank" rel="noopener noreferrer" class="ai-screen">Disney+</a>
+        </div>
+        <div class="updates">
+            <div class="update-item"><span class="emoji" aria-hidden="true">📹</span> S7: Pond Cam Chaos Unleashed!</div>
+            <div class="update-item"><span class="emoji" aria-hidden="true">👀</span> S7: Gardener John's Awesome Music Suggestions</div>
+            <div class="update-item"><span class="emoji" aria-hidden="true">🌟</span> S7: Bob Snee’s Masterful Advice</div>
+            <div class="update-item"><span class="emoji" aria-hidden="true">🔊</span> S7: Crystal Clear Chunk Videos and Sound</div>
+            <div class="update-item"><span class="emoji" aria-hidden="true">📖</span> S7: Gardener Jeff Reads Letter to Chunk</div>
+            <div class="update-item"><span class="emoji" aria-hidden="true">🎨</span> S7: Art! Tara & Chunk Were Meant to Be Together</div>
+            <div class="update-item garden"><span class="emoji" aria-hidden="true">🌱</span> S7: Coexisting in the Garden with Gardener Jeff Tips</div>
+        </div>
+    </div>
+
+    <!-- Gear and Art Section -->
+    <div class="section gear-flair">
+        <h2>CHUNK GEAR & TARA’S MAGICAL CREATIONS</h2>
+        Broccoli Bandit gear funds wildlife, grab it! Tara’s art drops soon!
+        <div class="links">
+            <a href="https://chunk-8.creator-spring.com/" target="_blank" rel="noopener noreferrer">Merch: Support Chunk’s Children’s Book</a>
+            <span class="self-publishing">Self-Publishing OUR Way! Join the Chunk Revolution!</span>
+            <a href="https://tarabachart.com/" target="_blank" rel="noopener noreferrer">Tara’s Art Site</a>
+            <a href="https://www.instagram.com/bach.tara?igsh=eGx2NHMwMjJuMjNt" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/p/Tara-Bach-100063551942417" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </div>
+        <div style="text-align: center; margin-top: 1.5rem;"><span class="emoji" aria-hidden="true">🎯</span> <strong>Contest:</strong> Gear pic tag @chunk_the_groundhog with ChunkMerchContest to win big!</div>
+    </div>
+
+    <!-- Wild Vibe Section -->
+    <div class="section wild-side">
+        <h2>CHUNK’S WILD VIBE</h2>
+        Gardener Jeff’s in with Wild Souls, Snacks the Groundhog’s a legend! <span class="emoji" aria-hidden="true">🦫</span> Harmony RAR: Saving wildlife one paw at a time, join Team Chunk! <a href="https://youtu.be/xTDLUskbzns" target="_blank" rel="noopener noreferrer" class="ai-video">Watch Mission Video</a> <a href="https://harmonyrar.org/#mailing" target="_blank" rel="noopener noreferrer" class="rar-mail">Join RAR Mailing List</a> Drop a paw print—support these heroes!
+        <div class="links">
+            <a href="https://www.facebook.com/profile.php?id=100069349838038&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Wildlife Maryland</a>
+            <a href="https://wildsoulswildliferescuerehab.org/rescue" target="_blank" rel="noopener noreferrer">Wild Souls Rescue</a>
+            <a href="https://ahnow.org/" target="_blank" rel="noopener noreferrer">Animal Help Now</a>
+            <a href="https://a.co/cDjGDVh" target="_blank" rel="noopener noreferrer">Support Snacks Salad</a>
+        </div>
+    </div>
+
+    <!-- Hype Crew Section -->
+    <div class="section hype-squad">
+        <h2>CHUNK & GARDENER JEFF'S LINKS</h2>
+        Chunk’s viral with 6 years of Gardener Jeff’s vids! Huge love to our supporters, you rock, we see you! <span class="emoji" aria-hidden="true">🦫</span> Meet intern Katie! <a href="https://chunknews.github.io/chunk-newsletter/Katie.html" target="_blank" rel="noopener noreferrer" class="ai-katie">Katie’s Story</a>
+        <div class="links">
+            <a href="https://a.co/7ItZdzi" target="_blank" rel="noopener noreferrer" class="award-jeff">Reward Gardener Jeff’s Epic 6-Year Chunk Streak!</a>
+            <a href="https://www.instagram.com/chunk_the_groundhog/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/@ChunkTheGroundhog" target="_blank" rel="noopener noreferrer" class="ai-youtube">YouTube: Stream Chunk</a>
+            <a href="https://facebook.com/chunkthegroundhog" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.tiktok.com/@chunkthegroundhog?_t=ZP-8tiyC8mULRn&_r=1" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://x.com/chunkgroundhog?s=21" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://mailchi.mp/e64e681738b5/chunk-land-news" target="_blank" rel="noopener noreferrer" class="mailing-cta">Join Our Mailing List Now!</a>
+            <a href="https://www.instagram.com/gardener_jeff?igsh=YXpkZ2VxOGo0Nnhj&utm_source=qr" target="_blank" rel="noopener noreferrer">Jeff’s Instagram</a>
+            <a href="https://www.linkedin.com/in/jeff-permar-a13489249?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.facebook.com/people/Jeffs-Garden-Project/100082248625516/" target="_blank" rel="noopener noreferrer">Jeff’s Garden Project</a>
+            <a href="https://www.thisamericanlife.org/853/groundhog-day/act-three-10" target="_blank" rel="noopener noreferrer">This American Life</a>
+        </div>
+    </div>
+
+    <!-- Jeff’s Dig Section -->
+    <div class="section jeff-dig">
+        <h2>GARDENER JEFF’S DIG</h2>
+        <div style="margin-top: 1rem;"><span class="emoji" aria-hidden="true">📘</span> Chunk’s chowing books and sparking wild vibes!</div>
+        <div style="margin-top: 1rem;"><em>Tickled</em> is a MUST READ in the headlines!</div>
+        <div style="margin-top: 1rem;"><em>Kombucha Curious</em> chills in the fridge—dig into the scoop!</div>
+        <div style="margin-top: 1rem;"><strong>Reads:</strong></div>
+        <div class="links">
+            <a href="https://www.amazon.com/Tickled-Commonsense-Guide-Present-Moment/dp/0063036894" target="_blank" rel="noopener noreferrer" class="ai-tickled">Tickled</a>
+            <a href="https://www.amazon.com/Kombucha-Curious-Drink-Transformed-Life/dp/B0CKRWVRTT" target="_blank" rel="noopener noreferrer">Kombucha Curious</a>
+        </div>
+        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px dashed var(--primary-orange);">
+            <strong>Hit us up:</strong> <a href="mailto:chunkthegroundhog@gmail.com">chunkthegroundhog@gmail.com</a>—spill your guts, fam! Tell us anything, Chunk won’t spill the carrots on the next big scoop!
+        </div>
+    </div>
+
+    <!-- JavaScript for Link Handling -->
+    <script defer>
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('mailto:')) {
+                    e.preventDefault();
+                    window.open(href, '_blank');
+                } else if (href.startsWith('mailto:')) {
+                    window.location.href = href;
+                }
+            });
+        });
+
+        // Optional: Dynamic Weather (uncomment and add your API key)
+        /*
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=Middletown,DE,US&appid=YOUR_API_KEY&units=imperial')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.weather-report').innerHTML = `🌤 CHUNK LAND WEATHER: ${data.main.temp}°F ${data.weather[0].description} <a href="https://weather.com/weather/today/l/52fc1ab34673ede3218e887e07e91bf60af694988dc559c5bca7a8704c177bef" target="_blank" rel="noopener noreferrer" class="live-weather" aria-label="View live weather for Middletown, DE">Live Weather</a>`;
+            })
+            .catch(error => console.error('Weather fetch failed:', error));
+        */
+    </script>
+</body>
+</html>
