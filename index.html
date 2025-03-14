@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Chunk Land Dispatch: Gardener Jeff’s scoop, Chunk’s vibe, wild updates, Chunk's Children's Book join the fam now!">
+    <meta name="robots" content="index, follow">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Chunk Land Dispatch</title>
+    <style>
+        :root {
+            --primaryorange: #ff8c00;
+            --lightorange: rgb(255, 140, 0);
+            --mediumorange: rgba(255, 140, 0, 0.5);
+            --brown: #5c4033;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --neonorange: #ff9500;
+            --teal: #008080; /* New color for language bar */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2vw;
+            background: var(--white);
+            color: var(--brown);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            font-size: clamp(14px, 2vw, 18px);
+        }
+        @media (max-width: 390px) {
+            body {
+                padding: 4vw;
+                font-size: clamp(12px, 3.5vw, 16px);
+            }
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vw;
+            max-width: 1200px;
+            max-height: 844px;
+            background: radial-gradient(circle, var(--mediumorange), transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        body::after {
+            content: 'Season 7  Issue 1';
+            position: fixed;
+            bottom: 5%;
+            right: 5%;
+            font-size: clamp(1em, 2vw, 1.5em);
+            color: var(--mediumorange);
+            text-transform: uppercase;
+            font-weight: 700;
+            transform: rotate(10deg);
+            text-shadow: 0 1px 5px var(--shadow);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        h1, h2 {
+            color: var(--primaryorange);
+            margin: 0.5em 0;
+            font-size: clamp(1.5em, 3vw, 2em);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: center;
+            text-shadow: 0 1px 2px var(--shadow);
+        }
+        h2 {
+            font-size: clamp(1.2em, 2.5vw, 1.5em);
+        }
+        a {
+            color: var(--brown);
+            text-decoration: none;
+            padding: 0.5em 1em 0.5em 1.5em;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.2s, color 0.3s;
+            position: relative;
+            background: var(--lightorange);
+            display: inline-block;
+            margin: 0.25em;
+        }
+        a:hover, a:focus {
+            color: var(--white);
+            background: var(--primaryorange);
+            transform: scale(1.05);
+            outline: none;
+        }
+        a::before {
+            content: '🌰';
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1em;
+            transition: content 0.3s;
+        }
+        a:hover::before, a:focus::before {
+            content: '🌱';
+        }
+        a.ai-pop {
+            background: linear-gradient(135deg, var(--neonorange), #ff6200);
+            color: var(--white);
+            font-weight: 900;
+            font-size: clamp(16px, 2.5vw, 20px);
+            padding: 0.6em 1.2em 0.6em 1.8em;
+            border: 2px solid var(--neonorange);
+            border-radius: 25px;
+            box-shadow: 0 0 10px var(--neonorange), inset 0 0 5px var(--neonorange);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        a.ai-pop:hover, a.ai-pop:focus {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--neonorange), inset 0 0 8px var(--neonorange);
+            color: var(--white);
+            background: linear-gradient(135deg, #ff6200, var(--neonorange));
+        }
+        a.ai-pop::before {
+            left: 0.3em;
+        }
+        .section {
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 15px;
+            border: 2px solid var(--primaryorange);
+        }
+        .titlesection {
+            background: linear-gradient(135deg, var(--neonorange), var(--primaryorange));
+            border: 4px double var(--neonorange);
+            box-shadow: 0 0 20px var(--neonorange), inset 0 0 10px var(--shadow);
+            animation: pulseGlow 1.5s infinite;
+            padding: 1.5em;
+            position: relative;
+            overflow: hidden;
+        }
+        .titlesection::before {
+            content: '🌰 CHUNK LAND 🌰';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(1.2em, 2.5vw, 1.8em);
+            color: var(--white);
+            text-shadow: 0 0 10px var(--neonorange);
+            animation: bounce 2s infinite;
+        }
+        .titlesection h1 {
+            color: var(--white);
+            font-size: clamp(2em, 4vw, 3em);
+            text-shadow: 0 0 15px var(--neonorange), 0 0 5px var(--shadow);
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px var(--neonorange), inset 0 0 10px var(--shadow); }
+            50% { box-shadow: 0 0 30px var(--neonorange), inset 0 0 15px var(--shadow); }
+            100% { box-shadow: 0 0 20px var(--neonorange), inset 0 0 10px var(--shadow); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75em;
+            margin-top: 1em;
+            justify-content: center;
+            border-top: 2px dashed var(--primaryorange);
+            padding-top: 1em;
+        }
+        .emoji {
+            display: inline-block;
+            vertical-align: middle;
+            width: 1.2em;
+            text-align: center;
+        }
+        em {
+            font-style: italic;
+            color: #000;
+        }
+        .tickledbig {
+            font-size: clamp(1.8em, 4vw, 2.2em);
+            font-weight: 700;
+        }
+        .weatherreport {
+            margin: 0.5em 0;
+            padding: 0.5em;
+            background: var(--lightorange);
+            border: 1px dashed var(--primaryorange);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--brown);
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        .weatherreport a {
+            text-decoration: underline;
+            text-decoration-color: var(--white);
+            color: var(--brown);
+        }
+        .weatherreport a:hover, .weatherreport a:focus {
+            color: var(--white);
+        }
+        .missionstatement {
+            text-align: center;
+            font-style: italic;
+            font-size: clamp(1em, 2vw, 1.2em);
+            color: var(--white);
+            margin: 0.5em 0;
+            text-shadow: 0 1px 2px var(--shadow);
+        }
+        .selfpublishing {
+            font-size: clamp(12px, 2vw, 14px);
+            color: var(--white);
+            font-weight: bold;
+            text-shadow: 0 1px 2px var(--shadow);
+            padding: 0.3em;
+            background: var(--lightorange);
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .languagebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--teal);
+            padding: 0.5em;
+            text-align: center;
+            z-index: 10;
+            border-bottom: 2px solid var(--primaryorange);
+            font-size: clamp(14px, 2.5vw, 18px);
+            font-weight: bold;
+            color: var(--white);
+            text-transform: uppercase;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        .languagebar select {
+            padding: 0.3em;
+            border-radius: 5px;
+            border: 1px solid var(--brown);
+            background: var(--white);
+            color: var(--brown);
+            font-size: clamp(12px, 2vw, 16px);
+            max-width: 220px;
+            width: 100%;
+            margin-top: 0.5em;
+        }
+        .languagebar .accessibilitysymbol {
+            margin-left: 0.5em;
+            color: var(--neonorange);
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        [data-translate] {
+            transition: opacity 0.3s;
+        }
+    </style>
+    <script type="text/javascript">
+        const API_KEY = 'AIzaSyBpUtQPnKPTRHSvfFcxnoAqIxfawoxLbGA';
+        const originalTexts = new Map();
+
+        function storeOriginalTexts() {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                originalTexts.set(element, element.textContent);
+            });
+        }
+
+        async function translatePage(targetLang) {
+            if (targetLang === 'en') {
+                originalTexts.forEach((text, element) => {
+                    element.textContent = text;
+                });
+                return;
+            }
+            const elements = document.querySelectorAll('[data-translate]');
+            const texts = Array.from(elements).map(el => el.textContent);
+            try {
+                const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        q: texts,
+                        source: 'en',
+                        target: targetLang,
+                        format: 'text'
+                    })
+                });
+                if (!response.ok) throw new Error('Translation API failed: ' + response.statusText);
+                const data = await response.json();
+                const translations = data.data.translations.map(t => t.translatedText);
+                elements.forEach((el, i) => {
+                    el.style.opacity = 0;
+                    setTimeout(() => {
+                        el.textContent = translations[i];
+                        el.style.opacity = 1;
+                    }, 300);
+                });
+            } catch (error) {
+                console.error('Translation error:', error);
+                alert('Oops, translation hit a snag! Check the API key or try again.');
+            }
+        }
+
+        function changeLanguage() {
+            const select = document.getElementById('language-select');
+            const language = select.value;
+            translatePage(language);
+        }
+
+        window.onload = function() {
+            storeOriginalTexts();
+            const select = document.getElementById('language-select');
+            select.value = 'en';
+        };
+    </script>
+</head>
+<body>
+    <div class="languagebar">
+        <label for="language-select">CHOOSE YOUR LANGUAGE NOW! <span class="accessibilitysymbol" title="Available in all languages">ℹ️🌐</span></label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="zh-CN">中文 (Mandarin Chinese)</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="ar">العربية (Arabic)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="pt">Português (Portuguese)</option>
+            <option value="ru">Русский (Russian)</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="jv">Basa Jawa (Javanese)</option>
+            <option value="ko">한국어 (Korean)</option>
+            <option value="fr">Français (French)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="ur">اردو (Urdu)</option>
+            <option value="vi">Tiếng Việt (Vietnamese)</option>
+            <option value="it">Italiano (Italian)</option>
+            <option value="tr">Türkçe (Turkish)</option>
+            <option value="uk">Українська (Ukrainian)</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="pl">Polski (Polish)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="or">ଓଡ଼ିଆ (Odia)</option>
+            <option value="my">မြန်မာဘာသာ (Burmese)</option>
+            <option value="th">ไทย (Thai)</option>
+            <option value="fa">فارسی (Persian)</option>
+            <option value="sq">Shqip (Albanian)</option>
+            <option value="am">አማርኛ (Amharic)</option>
+            <option value="hy">Հայերեն (Armenian)</option>
+            <option value="az">Azərbaycan dili (Azerbaijani)</option>
+            <option value="eu">Euskara (Basque)</option>
+            <option value="be">Беларуская (Belarusian)</option>
+            <option value="bs">Bosanski (Bosnian)</option>
+            <option value="bg">Български (Bulgarian)</option>
+            <option value="ca">Català (Catalan)</option>
+            <option value="ceb">Cebuano (Cebuano)</option>
+            <option value="ny">Chichewa (Chichewa)</option>
+            <option value="co">Corsu (Corsican)</option>
+            <option value="hr">Hrvatski (Croatian)</option>
+            <option value="cs">Čeština (Czech)</option>
+            <option value="da">Dansk (Danish)</option>
+            <option value="nl">Nederlands (Dutch)</option>
+            <option value="dz">Dzongkha (Dzongkha)</option>
+            <option value="eo">Esperanto (Esperanto)</option>
+            <option value="et">Eesti (Estonian)</option>
+            <option value="ee">Eʋegbe (Ewe)</option>
+            <option value="fi">Suomi (Finnish)</option>
+            <option value="ff">Fulfulde (Fula)</option>
+            <option value="gl">Galego (Galician)</option>
+            <option value="ka">ქართული (Georgian)</option>
+            <option value="el">Ελληνικά (Greek)</option>
+            <option value="ht">Kreyòl Ayisyen (Haitian Creole)</option>
+            <option value="ha">Hausa (Hausa)</option>
+            <option value="haw">ʻŌlelo Hawaiʻi (Hawaiian)</option>
+            <option value="he">עברית (Hebrew)</option>
+            <option value="hmn">Hmoob (Hmong)</option>
+            <option value="hu">Magyar (Hungarian)</option>
+            <option value="is">Íslenska (Icelandic)</option>
+            <option value="ig">Igbo (Igbo)</option>
+            <option value="id">Bahasa Indonesia (Indonesian)</option>
+            <option value="ga">Gaeilge (Irish)</option>
+            <option value="kl">Kalaallisut (Greenlandic)</option>
+            <option value="kk">Қазақ тілі (Kazakh)</option>
+            <option value="km">ភាសាខ្មែរ (Khmer)</option>
+            <option value="rw">Kinyarwanda (Kinyarwanda)</option>
+            <option value="ky">Кыргызча (Kyrgyz)</option>
+            <option value="lo">ພາສາລາວ (Lao)</option>
+            <option value="lv">Latviešu (Latvian)</option>
+            <option value="lt">Lietuvių (Lithuanian)</option>
+            <option value="lb">Lëtzebuergesch (Luxembourgish)</option>
+            <option value="mk">Македонски (Macedonian)</option>
+            <option value="mg">Malagasy (Malagasy)</option>
+            <option value="ms">Bahasa Melayu (Malay)</option>
+            <option value="mt">Malti (Maltese)</option>
+            <option value="mi">Māori (Māori)</option>
+            <option value="mn">Монгол (Mongolian)</option>
+            <option value="ne">नेपाली (Nepali)</option>
+            <option value="no">Norsk (Norwegian)</option>
+            <option value="ps">پښتو (Pashto)</option>
+            <option value="qu">Quechua (Quechua)</option>
+            <option value="sm">Gagana Samoa (Samoan)</option>
+            <option value="gd">Gàidhlig (Scottish Gaelic)</option>
+            <option value="sr">Српски (Serbian)</option>
+            <option value="st">Sesotho (Sesotho)</option>
+            <option value="sn">ChiShona (Shona)</option>
+            <option value="sd">سنڌي (Sindhi)</option>
+            <option value="si">සිංහල (Sinhala)</option>
+            <option value="sk">Slovenčina (Slovak)</option>
+            <option value="sl">Slovenščina (Slovenian)</option>
+            <option value="so">Soomaali (Somali)</option>
+            <option value="sw">Kiswahili (Swahili)</option>
+            <option value="sv">Svenska (Swedish)</option>
+            <option value="tg">Тоҷикӣ (Tajik)</option>
+            <option value="tk">Türkmençe (Turkmen)</option>
+            <option value="tt">Татарча (Tatar)</option>
+            <option value="to">Lea Faka-Tonga (Tongan)</option>
+            <option value="ug">ئۇيغۇرچە (Uyghur)</option>
+            <option value="uz">Oʻzbekcha (Uzbek)</option>
+            <option value="cy">Cymraeg (Welsh)</option>
+            <option value="xh">isiXhosa (Xhosa)</option>
+            <option value="yi">ייִדיש (Yiddish)</option>
+            <option value="yo">Yorùbá (Yoruba)</option>
+            <option value="zu">isiZulu (Zulu)</option>
+            <option value="af">Afrikaans (Afrikaans)</option>
+            <option value="iu">Inuktitut (Inuktitut)</option>
+            <option value="ku">Kurdî (Kurdish)</option>
+            <option value="la">Latina (Latin)</option>
+            <option value="ln">Lingála (Lingala)</option>
+            <option value="lu">Luba-Katanga (Luba)</option>
+            <option value="om">Oromoo (Oromo)</option>
+            <option value="sa">संस्कृतम् (Sanskrit)</option>
+            <option value="ti">ትግርኛ (Tigrinya)</option>
+            <option value="ts">Xitsonga (Tsonga)</option>
+            <option value="tw">Twi (Twi)</option>
+            <option value="wo">Wolof (Wolof)</option>
+        </select>
+    </div>
+
+    <div class="section titlesection" data-translate>
+        <h1>CHUNK LAND DISPATCH DEBUT</h1>
+        <div class="missionstatement">"Coexisting with Wildlife, One Chunk at a Time!"</div>
+    </div>
+
+    <div class="section snoozenews">
+        <h2 data-translate>YO CHUNK FAM!</h2>
+        <div style="text-align: center;" data-translate><span class="emoji" aria-hidden="true">🦫</span> Chunk’s no punk he’ll emerge when ready! <span class="emoji" aria-hidden="true">💚</span></div>
+        <div class="weatherreport">
+            <span class="emoji" aria-hidden="true">🌤</span> <span data-translate>CHUNK LAND WEATHER: 47°F partly cloudy (Middletown DE March 13, 2025). Spring’s Chunkin’ in!</span> 
+            <a href="https://weather.com/weather/today/l/52fc1ab34673ede3218e887e07e91bf60af694988dc559c5bca7a8704c177bef" target="_blank" rel="noopener noreferrer" class="liveweather" aria-label="View live weather for Middletown, DE" data-translate>Click here for Live Chunk Land Weather</a>
+            <br><span data-translate>Stay tuned for Season 7 Special Premiere!</span>
+        </div>
+        <div style="margin-top: 0.5em;" data-translate>New to Chunk? <a href="https://youtu.be/3nS6OqHT7aU" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Chunk’s First Video</a></div>
+    </div>
+
+    <div class="section jeffscoop">
+        <h2 data-translate>GARDENER JEFF SPILLS THE DIRT</h2>
+        <span data-translate>Gardener Jeff drops the never told story: </span><em class="tickledbig">Tickled</em><span data-translate> saved Chunk Land! In Season 5, Gardener Jeff nearly quit </span><br><br><span data-translate>but </span><em>Tickled</em><span data-translate> rewired him now Season 7’s the best yet! </span><br><br><a href="https://chunknews.github.io/chunk-newsletter/Tickled_Review.html" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Read Gardener Jeff’s Tickled Review & His Untold Chunk Land Saga</a> <br><br><a href="https://www.amazon.com/Tickled-Commonsense-Guide-Present-Moment/dp/0063036894" target="_blank" rel="noopener noreferrer" class="aijuice" data-translate>Buy Tickled Book</a> <span class="emoji" aria-hidden="true">🦫</span>
+    </div>
+
+    <div class="section natgeowild">
+        <h2 data-translate>CHUNK & GARDENER JEFF CHUNKIN’ IT UP ON NAT GEO!</h2>
+        <div style="text-align: center; margin-top: 0.5em;" data-translate><span class="emoji" aria-hidden="true">🦫</span> Yo, fam—Chunk and Gardener Jeff are Chunkin’ the screen on <em>My Best Friend’s an Animal</em>! Available NOW S1:E5—Season 1 Episode 5, A MUST DIG! <span class="emoji" aria-hidden="true">🌟</span></div>
+        <div style="margin-top: 0.5em;" data-translate>Yo, check out Gardener Jeff’s favorite grub spot—Taco Reho! Chef Billy’s creations shine in Chunk and Gardener Jeff’s Chunky episode!</div>
+        <div class="links">
+            <a href="https://www.nationalgeographic.com/tv/show/39f1c36c-f84d-475a-b1f6-e611df851f7a" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Nat Geo Wild</a>
+            <a href="https://www.hulu.com/series/my-best-friends-an-animal-39c1f36b-c07d-44c5-aa38-ecf8cf6659d2?dl=false" target="_blank" rel="noopener noreferrer" data-translate>Hulu</a>
+            <a href="https://www.disneyplus.com/series/my-best-friends-an-animal/5ahCmMFxy2jm?v=var1" target="_blank" rel="noopener noreferrer" data-translate>Disney+</a>
+            <a href="https://www.tacoreho.com" target="_blank" rel="noopener noreferrer" data-translate>Taco Reho Website</a>
+            <a href="https://www.instagram.com/tacoreho/" target="_blank" rel="noopener noreferrer" data-translate>Taco Reho Instagram</a>
+            <a href="https://www.facebook.com/tacorehotruck/" target="_blank" rel="noopener noreferrer" data-translate>Taco Reho Facebook</a>
+        </div>
+    </div>
+
+    <div class="section gearflair">
+        <h2 data-translate>CHUNK GEAR & TARA’S MAGICAL CREATIONS</h2>
+        <span data-translate>Broccoli Bandit gear supports wildlife grab it! Tara’s art coming soon!</span>
+        <div class="links">
+            <a href="https://chunk-8.creator-spring.com/" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Merch: Support Chunk’s Children’s Book</a>
+            <span class="selfpublishing ai-pop" data-translate>SelfPublishing OUR Way! Join the Chunk Revolution!</span>
+            <a href="https://tarabachart.com/" target="_blank" rel="noopener noreferrer" data-translate>Tara’s Art Site</a>
+            <a href="https://www.instagram.com/bach.tara?igsh=eGx2NHMwMjJuMjNt" target="_blank" rel="noopener noreferrer" data-translate>Instagram</a>
+            <a href="https://www.facebook.com/p/Tara-Bach-100063551942417" target="_blank" rel="noopener noreferrer" data-translate>Facebook</a>
+        </div>
+        <div style="text-align: center; margin-top: 1em;" data-translate><span class="emoji" aria-hidden="true">🎯</span> <strong>Instagram Contest:</strong> Wear Chunk merch, tag @Chunk_the_Groundhog and @bach.tara, share with a friend, use #ChunkMerch to win!</div>
+    </div>
+
+    <div class="section wildside">
+        <h2 data-translate>CHUNK & GARDENER JEFF’S WEB OF WILD CHUNKS</h2>
+        <div style="margin-top: 0.5em;" data-translate>Hold up—Chunk and Gardener Jeff are diggin’ deep online, thanks to Wild Souls droppin’ the Animal Help Now scoop on Gardener Jeff! <span class="emoji" aria-hidden="true">🦫</span> Snacks is the Chunkiest legend out there—internet’s goin’ nuts! Harmony RAR’s got a trivia event March 28th—more deets to follow, fam—join the Chunk-tastic crew!</div>
+        <div class="links">
+            <a href="https://youtu.be/xTDLUskbzns" target="_blank" rel="noopener noreferrer" class="aivideo" data-translate>Watch Mission Video</a>
+            <a href="https://harmonyrar.org/#mailing" target="_blank" rel="noopener noreferrer" class="rarmail" data-translate>Join RAR Mailing List</a>
+            <a href="https://www.facebook.com/profile.php?id=100069349838038&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" data-translate>Wildlife Maryland</a>
+            <a href="https://wildsoulswildliferescuerehab.org/rescue" target="_blank" rel="noopener noreferrer" data-translate>Wild Souls Rescue</a>
+            <a href="https://ahnow.org/" target="_blank" rel="noopener noreferrer" data-translate>Animal Help Now</a>
+            <a href="https://a.co/cDjGDVh" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Support Snacks Salad</a>
+        </div>
+    </div>
+
+    <div class="section hypesquad">
+        <h2 data-translate>CHUNK & GARDENER JEFF'S LINKS</h2>
+        <span data-translate>Chunk’s viral thanks to Gardener Jeff’s 6 years of vids! Big love to our fans! </span><span class="emoji" aria-hidden="true">🦫</span><span data-translate> Meet intern Katie! </span><a href="https://chunknews.github.io/chunk-newsletter/Katie.html" target="_blank" rel="noopener noreferrer" class="aikatie" data-translate>Katie’s Story</a>
+        <div class="links">
+            <a href="https://a.co/7ItZdzi" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Reward Gardener Jeff’s Epic 6Year Chunk Streak!</a>
+            <a href="https://www.instagram.com/chunk_the_groundhog/" target="_blank" rel="noopener noreferrer" data-translate>Instagram</a>
+            <a href="https://www.instagram.com/gardener_jeff?igsh=YXpkZ2VxOGo0Nnhj&utm_source=qr" target="_blank" rel="noopener noreferrer" data-translate>Gardener Jeff Original Music Gardening Tips Chunk Land Behind the Scenes</a>
+            <a href="https://www.youtube.com/@ChunkTheGroundhog" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>YouTube: Stream All Day!</a>
+            <a href="https://facebook.com/chunkthegroundhog" target="_blank" rel="noopener noreferrer" data-translate>Facebook</a>
+            <a href="https://www.tiktok.com/@chunkthegroundhog?_t=ZP-8tiyC8mULRn&_r=1" target="_blank" rel="noopener noreferrer" data-translate>TikTok</a>
+            <a href="https://x.com/chunkgroundhog?s=21" target="_blank" rel="noopener noreferrer" data-translate>X Twitter</a>
+            <a href="https://mailchi.mp/e64e681738b5/chunk-land-news" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Join Our Mailing List Now!</a>
+            <a href="https://www.linkedin.com/in/jeff-permar-a13489249?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" data-translate>LinkedIn</a>
+            <a href="https://www.facebook.com/people/Jeffs-Garden-Project/100082248625516/" target="_blank" rel="noopener noreferrer" data-translate>Gardener Jeffs Garden Project Gardening Tips and Behind the Scenes Chunk Land</a>
+            <a href="https://www.thisamericanlife.org/853/groundhog-day/act-three-10" target="_blank" rel="noopener noreferrer" data-translate>This American Life</a>
+        </div>
+    </div>
+
+    <div class="section jeffdig">
+        <h2 data-translate>GARDENER JEFF’S DIG</h2>
+        <div style="margin-top: 0.5em;" data-translate><span class="emoji" aria-hidden="true">📘</span> Chunk’s loving books and wild vibes!</div>
+        <div style="margin-top: 0.5em;" data-translate><em>Tickled</em> a must read!</div>
+        <div style="margin-top: 0.5em;" data-translate><em>Kombucha Curious</em> check it out!</div>
+        <div style="margin-top: 0.5em;" data-translate><strong>Reads:</strong></div>
+        <div class="links">
+            <a href="https://www.amazon.com/Tickled-Commonsense-Guide-Present-Moment/dp/0063036894" target="_blank" rel="noopener noreferrer" class="ai-pop" data-translate>Tickled</a>
+            <a href="https://www.amazon.com/Kombucha-Curious-Drink-Transformed-Life/dp/B0CKRWVRTT" target="_blank" rel="noopener noreferrer" data-translate>Kombucha Curious</a>
+        </div>
+        <div style="margin-top: 1em; padding-top: 0.5em; border-top: 2px dashed var(--primaryorange);" data-translate>
+            <a href="mailto:chunkthegroundhog@gmail.com" class="ai-pop" data-translate>Hit us up: chunkthegroundhog@gmail.com</a> spill it, fam! Chunk’s keeping the next scoop secret!
+        </div>
+    </div>
+</body>
+</html>
