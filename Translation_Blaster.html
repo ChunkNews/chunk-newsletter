@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Blaster</title>
+    <style>
+        .translation-blaster {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #2f4f4f, #ff8c00);
+            padding: 15px;
+            text-align: center;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+
+        .translation-blaster span {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: cycleText 10s infinite linear;
+        }
+
+        @keyframes cycleText {
+            0% { content: '🌍 Translate'; }
+            20% { content: '🌍 Traducir'; }
+            40% { content: '🌍 翻译'; }
+            60% { content: '🌍 ترجم'; }
+            80% { content: '🌍 Перевод'; }
+        }
+
+        .translation-blaster select {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 25px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            max-width: 300px;
+            width: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translation-blaster select:hover,
+        .translation-blaster select:focus {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            outline: none;
+        }
+
+        .translation-blaster.hidden {
+            transform: translateY(-100%);
+        }
+
+        [data-translate] {
+            transition: opacity 0.3s;
+        }
+
+        .translation-error {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #ff6200;
+            color: #fff;
+            padding: 1em;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1002;
+        }
+
+        @media (max-width: 600px) {
+            .translation-blaster {
+                padding: 10px;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .translation-blaster select {
+                max-width: 200px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .translation-blaster {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="translation-blaster" role="region" aria-label="Language selection">
+        <span>🌍 Translate</span>
+        <select id="language-select" onchange="translatePage()" aria-label="Select your language">
+            <option value="en">English</option>
+            <option value="zh-CN">中文 (Mandarin Chinese)</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="ar">العربية (Arabic)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="pt">Português (Portuguese)</option>
+            <option value="ru">Русский (Russian)</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="jv">Basa Jawa (Javanese)</option>
+            <option value="ko">한국어 (Korean)</option>
+            <option value="fr">Français (French)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="ur">اردو (Urdu)</option>
+            <option value="vi">Tiếng Việt (Vietnamese)</option>
+            <option value="it">Italiano (Italian)</option>
+            <option value="tr">Türkçe (Turkish)</option>
+            <option value="uk">Українська (Ukrainian)</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="pl">Polski (Polish)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="or">ଓଡ଼ିଆ (Odia)</option>
+            <option value="my">မြန်မာဘာသာ (Burmese)</option>
+            <option value="th">ไทย (Thai)</option>
+            <option value="fa">فارسی (Persian)</option>
+            <option value="sq">Shqip (Albanian)</option>
+            <option value="am">አማርኛ (Amharic)</option>
+            <option value="hy">Հայերեն (Armenian)</option>
+            <option value="az">Azərbaycan dili (Azerbaijani)</option>
+            <option value="eu">Euskara (Basque)</option>
+            <option value="be">Беларуская (Belarusian)</option>
+            <option value="bs">Bosanski (Bosnian)</option>
+            <option value="bg">Български (Bulgarian)</option>
+            <option value="ca">Català (Catalan)</option>
+            <option value="ceb">Cebuano (Cebuano)</option>
+            <option value="ny">Chichewa (Chichewa)</option>
+            <option value="co">Corsu (Corsican)</option>
+            <option value="hr">Hrvatski (Croatian)</option>
+            <option value="cs">Čeština (Czech)</option>
+            <option value="da">Dansk (Danish)</option>
+            <option value="nl">Nederlands (Dutch)</option>
+            <option value="dz">Dzongkha (Dzongkha)</option>
+            <option value="eo">Esperanto (Esperanto)</option>
+            <option value="et">Eesti (Estonian)</option>
+            <option value="ee">Eʋegbe (Ewe)</option>
+            <option value="fi">Suomi (Finnish)</option>
+            <option value="ff">Fulfulde (Fula)</option>
+            <option value="gl">Galego (Galician)</option>
+            <option value="ka">ქართული (Georgian)</option>
+            <option value="el">Ελληνικά (Greek)</option>
+            <option value="ht">Kreyòl Ayisyen (Haitian Creole)</option>
+            <option value="ha">Hausa (Hausa)</option>
+            <option value="haw">ʻŌlelo Hawaiʻi (Hawaiian)</option>
+            <option value="he">עברית (Hebrew)</option>
+            <option value="hmn">Hmoob (Hmong)</option>
+            <option value="hu">Magyar (Hungarian)</option>
+            <option value="is">Íslenska (Icelandic)</option>
+            <option value="ig">Igbo (Igbo)</option>
+            <option value="id">Bahasa Indonesia (Indonesian)</option>
+            <option value="ga">Gaeilge (Irish)</option>
+            <option value="kl">Kalaallisut (Greenlandic)</option>
+            <option value="kk">Қазақ тілі (Kazakh)</option>
+            <option value="km">ភាសាខ្មែរ (Khmer)</option>
+            <option value="rw">Kinyarwanda (Kinyarwanda)</option>
+            <option value="ky">Кыргызча (Kyrgyz)</option>
+            <option value="lo">ພາສາລາວ (Lao)</option>
+            <option value="lv">Latviešu (Latvian)</option>
+            <option value="lt">Lietuvių (Lithuanian)</option>
+            <option value="lb">Lëtzebuergesch (Luxembourgish)</option>
+            <option value="mk">Македонски (Macedonian)</option>
+            <option value="mg">Malagasy (Malagasy)</option>
+            <option value="ms">Bahasa Melayu (Malay)</option>
+            <option value="mt">Malti (Maltese)</option>
+            <option value="mi">Māori (Māori)</option>
+            <option value="mn">Монгол (Mongolian)</option>
+            <option value="ne">नेपाली (Nepali)</option>
+            <option value="no">Norsk (Norwegian)</option>
+            <option value="ps">پښتو (Pashto)</option>
+            <option value="qu">Quechua (Quechua)</option>
+            <option value="sm">Gagana Samoa (Samoan)</option>
+            <option value="gd">Gàidhlig (Scottish Gaelic)</option>
+            <option value="sr">Српски (Serbian)</option>
+            <option value="st">Sesotho (Sesotho)</option>
+            <option value="sn">ChiShona (Shona)</option>
+            <option value="sd">سنڌي (Sindhi)</option>
+            <option value="si">සිංහල (Sinhala)</option>
+            <option value="sk">Slovenčina (Slovak)</option>
+            <option value="sl">Slovenščina (Slovenian)</option>
+            <option value="so">Soomaali (Somali)</option>
+            <option value="sw">Kiswahili (Swahili)</option>
+            <option value="sv">Svenska (Swedish)</option>
+            <option value="tg">Тоҷикӣ (Tajik)</option>
+            <option value="tk">Türkmençe (Turkmen)</option>
+            <option value="tt">Татарча (Tatar)</option>
+            <option value="to">Lea Faka-Tonga (Tongan)</option>
+            <option value="ug">ئۇيغۇرچە (Uyghur)</option>
+            <option value="uz">Oʻzbekcha (Uzbek)</option>
+            <option value="cy">Cymraeg (Welsh)</option>
+            <option value="xh">isiXhosa (Xhosa)</option>
+            <option value="yi">ייִדיש (Yiddish)</option>
+            <option value="yo">Yorùbá (Yoruba)</option>
+            <option value="zu">isiZulu (Zulu)</option>
+            <option value="af">Afrikaans (Afrikaans)</option>
+            <option value="iu">Inuktitut (Inuktitut)</option>
+            <option value="ku">Kurdî (Kurdish)</option>
+            <option value="la">Latina (Latin)</option>
+            <option value="ln">Lingála (Lingala)</option>
+            <option value="lu">Luba-Katanga (Luba)</option>
+            <option value="om">Oromoo (Oromo)</option>
+            <option value="sa">संस्कृतम् (Sanskrit)</option>
+            <option value="ti">ትግርኛ (Tigrinya)</option>
+            <option value="ts">Xitsonga (Tsonga)</option>
+            <option value="tw">Twi (Twi)</option>
+            <option value="wo">Wolof (Wolof)</option>
+        </select>
+    </div>
+    <div class="translation-error" id="translation-error" role="alert"></div>
+
+    <script>
+        const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your Google API key
+        const originalTexts = new Map();
+
+        // Store original English text for all translatable elements
+        function storeOriginalTexts() {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                originalTexts.set(element, element.innerHTML.trim());
+            });
+        }
+
+        // Translate the page using Google Translate API
+        async function translatePage() {
+            const lang = document.getElementById('language-select').value;
+            if (lang === 'en') {
+                originalTexts.forEach((text, element) => {
+                    element.innerHTML = text;
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            const texts = Array.from(originalTexts.values());
+            try {
+                const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        q: texts,
+                        source: 'en',
+                        target: lang,
+                        format: 'html'
+                    })
+                });
+
+                if (!response.ok) throw new Error('Translation failed');
+                const data = await response.json();
+                const translations = data.data.translations.map(t => t.translatedText);
+
+                let i = 0;
+                originalTexts.forEach((_, element) => {
+                    element.innerHTML = translations[i++];
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Translation error:', error);
+                const errorNotice = document.getElementById('translation-error');
+                errorNotice.textContent = 'Translation failed—check your connection or API key!';
+                errorNotice.style.display = 'block';
+                setTimeout(() => errorNotice.style.display = 'none', 5000);
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            storeOriginalTexts();
+            document.getElementById('language-select').value = 'en';
+
+            // Cycle the "Translate" text dynamically
+            const translateSpan = document.querySelector('.translation-blaster span');
+            const words = ['Translate', 'Traducir', '翻译', 'ترجم', 'Перевод'];
+            let index = 0;
+            setInterval(() => {
+                translateSpan.textContent = `🌍 ${words[index]}`;
+                index = (index + 1) % words.length;
+            }, 2000);
+
+            // Hide translation bar on scroll down, show on scroll up
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.scrollY;
+                const translationBar = document.querySelector('.translation-blaster');
+                if (currentScroll > lastScroll && currentScroll > 50) {
+                    translationBar.classList.add('hidden');
+                } else if (currentScroll < lastScroll) {
+                    translationBar.classList.remove('hidden');
+                }
+                lastScroll = currentScroll;
+            });
+        };
+    </script>
+</body>
+</html>
